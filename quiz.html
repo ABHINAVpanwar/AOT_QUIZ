@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATTACK ON TITAN</title>
+    <link rel="icon" type="image/x-icon" href="IMG/icon.png" />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100vh;
+        background-image: url(IMG/BD.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      #S1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      #D1 {
+        margin-top: 6vh;
+        margin-right: 20vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #484e50;
+      }
+
+      #D2 {
+        margin-top: 6vh;
+        margin-left: 20vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #484e50;
+      }
+
+      h2 {
+        font-family: "Lato", sans-serif;
+        font-size: 30px;
+      }
+
+      #D3 {
+        margin-top: 6vh;
+        display: flex;
+        justify-content: center;
+        color: #fcfcfc;
+      }
+
+      h1 {
+        font-family: "Lato", sans-serif;
+        font-size: 36px;
+        margin-left: 4vw;
+        margin-right: 4vw;
+      }
+
+      #S3 {
+        display: flex;
+        flex-direction: column;
+        color: #1e1e21;
+        align-items: center;
+        margin-top: 6vh;
+        font-size: 28px;
+        font-family: "Lato", sans-serif;
+      }
+      .C {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 70vw;
+        border: 4px solid #3c3936;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+      }
+
+      h3 {
+        margin-left: 1vw;
+        margin-right: 6vw;
+      }
+
+      a:hover {
+        cursor: pointer;
+        color: #fcfcfc;
+      }
+
+      #S4 {
+        margin-top: 1vh;
+        display: flex;
+        justify-content: center;
+      }
+
+      #D4 {
+        width: 50px;
+        height: 50px;
+        border: 4px solid #b68a64;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      h4 {
+        color: #fcfcfc;
+        font-size: 26px;
+        font-family: "Lato", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="S1">
+      <div id="D1">
+        <h2>QUES.</h2>
+        <h2 id="number">1</h2>
+      </div>
+      <div id="D2">
+        <h2>SCORE</h2>
+        <h2 id="score">0</h2>
+      </div>
+    </section>
+    <section id="S2">
+      <div id="D3">
+        <h1 id="question"></h1>
+      </div>
+    </section>
+    <section id="S3">
+      <div class="C">
+        <h3>A</h3>
+        <a id="O1"></a>
+      </div>
+      <div class="C">
+        <h3>B</h3>
+        <a id="O2"></a>
+      </div>
+      <div class="C">
+        <h3>C</h3>
+        <a id="O3"></a>
+      </div>
+      <div class="C">
+        <h3>D</h3>
+        <a id="O4"></a>
+      </div>
+    </section>
+    <section id="S4">
+      <div id="D4">
+        <h4 id="T">30</h4>
+      </div>
+    </section>
+    <script>
+      let Q = document.getElementById("question");
+      let N = document.getElementById("number");
+      let S = document.getElementById("score");
+      let one = document.getElementById("O1");
+      let two = document.getElementById("O2");
+      let three = document.getElementById("O3");
+      let four = document.getElementById("O4");
+      let time = document.getElementById("T");
+
+      const question = [
+        "In Eldian mythology, who granted Ymir Fritz the power of the Titans ?",
+        "The 'D' in ODM gear stands for what ?",
+        "How long does someone live for after eating a person controlling one of the 9 Titans ?",
+        "Which Marleyan city contains an 'internment zone' for Eldians to live in ?",
+        "What did Levi find in the false bottom of Eren’s basement desk ?",
+        "The Founding Titan allows its user to gain control of other titans by doing what ?",
+        "Grisha Yeager stole the Founding Titan from which family before almost wiping them out ?",
+        "What does Eren use to seal Wall Rose after its breach ?",
+        "What was the last gift that Kenny Ackermann gave to Levi ?",
+        "Did Eren Loved Mikasa",
+      ];
+
+      const options = [
+        [
+          "The Devil of All Earth",
+          "The Devil of Helos",
+          "The Dancing Devil",
+          "The Spawn of the Devil",
+        ],
+        ["Deadly", "Directional", "Determined", "Destructive"],
+        ["10 years", "19 years", "13 years", "15 years"],
+        ["Shiganshina", "Mitras", "Ragako", "Libero"],
+        ["Books", "A key", "An amulet", "A gun"],
+        ["Dancing", "Screaming", "Jumping", "Whistling"],
+        ["Tyber", "Braun", "Fritz", "Reiss"],
+        ["Wall", "Titans", "A boulder", "Crystal"],
+        [
+          "One of his guns",
+          "A Titan injection",
+          "His favourite hat",
+          "A necklace from Levi’s mother",
+        ],
+        ["Yes", "No", "Were Friends", "don't know"],
+      ];
+
+      let i = 0;
+      let count = 0;
+
+      Q.innerHTML = question[i];
+      N.innerHTML = i + 1;
+      one.innerHTML = options[i][0];
+      two.innerHTML = options[i][1];
+      three.innerHTML = options[i][2];
+      four.innerHTML = options[i][3];
+
+      one.addEventListener("click", function () {
+        if (i == 0 || i == 4 || i == 9) {
+          count++;
+          S.innerHTML = count;
+        } else if (i > 9) {
+          location.replace("index.html");
+        }
+        Time = 0;
+        i++;
+        Q.innerHTML = question[i];
+        N.innerHTML = i + 1;
+        one.innerHTML = options[i][0];
+        two.innerHTML = options[i][1];
+        three.innerHTML = options[i][2];
+        four.innerHTML = options[i][3];
+      });
+
+      two.addEventListener("click", function () {
+        if (i == 1 || i == 5 || i == 8) {
+          count++;
+          S.innerHTML = count;
+        } else if (i > 9) {
+          location.replace("index.html");
+        }
+        Time = 0;
+        i++;
+        Q.innerHTML = question[i];
+        N.innerHTML = i + 1;
+        one.innerHTML = options[i][0];
+        two.innerHTML = options[i][1];
+        three.innerHTML = options[i][2];
+        four.innerHTML = options[i][3];
+      });
+
+      three.addEventListener("click", function () {
+        if (i == 2 || i == 7) {
+          count++;
+          S.innerHTML = count;
+        } else if (i > 9) {
+          location.replace("index.html");
+        }
+        Time = 0;
+        i++;
+        Q.innerHTML = question[i];
+        N.innerHTML = i + 1;
+        one.innerHTML = options[i][0];
+        two.innerHTML = options[i][1];
+        three.innerHTML = options[i][2];
+        four.innerHTML = options[i][3];
+      });
+
+      four.addEventListener("click", function () {
+        if (i == 3 || i == 6) {
+          count++;
+          S.innerHTML = count;
+        } else if (i > 9) {
+          location.replace("index.html");
+        }
+        Time = 0;
+        i++;
+        Q.innerHTML = question[i];
+        N.innerHTML = i + 1;
+        one.innerHTML = options[i][0];
+        two.innerHTML = options[i][1];
+        three.innerHTML = options[i][2];
+        four.innerHTML = options[i][3];
+      });
+
+      let Time = 0;
+      let stop = 0;
+
+      let countdown = setInterval(function () {
+        time.innerHTML = 30 - Time;
+        Time++;
+        stop++;
+        if (time.innerHTML == 0) {
+          Time = 0;
+          i++;
+          Q.innerHTML = question[i];
+          N.innerHTML = i + 1;
+          one.innerHTML = options[i][0];
+          two.innerHTML = options[i][1];
+          three.innerHTML = options[i][2];
+          four.innerHTML = options[i][3];
+        } else if (i > 9) {
+          clearInterval(countdown);
+          location.replace("index.html");
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
